@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+  <div class="app-container">
+    <h1 class="title">📋 Task Manager</h1>
+
+    <!-- Formulario agregar -->
+    <div class="card add-task-card">
+      <h2>Agregar tarea</h2>
+      <form id="taskForm">
+        <input type="text" id="titleInput" placeholder="Título" required />
+        <input type="date" id="dueDateInput" required />
+        <select id="statusInput">
+          <option value="Pending">Pendiente</option>
+          <option value="Completed">Completada</option>
+        </select>
+        <button type="submit" class="btn">Agregar</button>
+      </form>
+    </div>
+
+    <!-- Buscar -->
+    <div class="card search-task-card">
+      <h2>Buscar tarea</h2>
+      <input type="text" id="searchInput" placeholder="Buscar por ID o Título"/>
+      <button onclick="searchTask()" class="btn">Buscar</button>
+      <button onclick="fetchTasks()" class="btn btn-secondary">Mostrar todas</button>
+    </div>
+
+    <!-- Listado -->
+    <div class="card task-list-card">
+      <h2>Listado de tareas</h2>
+      <ul id="taskList" class="task-list"></ul>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
+
