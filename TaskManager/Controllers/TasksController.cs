@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc; // Para ControllerBase y ActionResult
-using Microsoft.EntityFrameworkCore; // Para DbContext y métodos de extensión como ToListAsync
-using System.Collections.Generic; // Para List<T>
-using System.Linq; // Para LINQ
-using System.Threading.Tasks; // Para Task
-using TaskManager.Data; // Asegúrate de que este espacio de nombres sea correcto
+﻿using Microsoft.AspNetCore.Mvc; 
+using Microsoft.EntityFrameworkCore; 
+using System.Collections.Generic; 
+using System.Linq; 
+using System.Threading.Tasks; 
+using TaskManager.Data; 
 using TaskManager.Models;
 
 namespace TaskManager.Controllers
