@@ -10,8 +10,6 @@ RUN dotnet publish ./TaskManager/*.csproj -c Release -o /out
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /out ./
-# .NET 8 en contenedores usa 8080 por defecto
-# Y Koyeb ya expone un PORT usare ese nomas
 ENV ASPNETCORE_HTTP_PORTS=${PORT}
 EXPOSE 8080
-CMD ["dotnet", "TaskManager.dll"]  # <-- cambia por el nombre real
+CMD ["dotnet", "TaskManager.dll"]  
