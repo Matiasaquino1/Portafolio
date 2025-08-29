@@ -1,15 +1,22 @@
-# ===== Build =====
+
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ./TaskManager/*.csproj ./TaskManager/
-RUN dotnet restore ./TaskManager/*.csproj
-COPY ./TaskManager ./TaskManager
-RUN dotnet publish ./TaskManager/*.csproj -c Release -o /out
 
-# ===== Run =====
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+
+COPY ["./", "./"]
+RUN dotnet restore
+
+
+RUN dotnet build -c Release -o /app/build
+RUN dotnet publish -c Release -o /app/publish /p:UseAppHost=false
+
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
-COPY --from=build /out ./
-ENV ASPNETCORE_HTTP_PORTS=${PORT}
-EXPOSE 8080
-CMD ["dotnet", "TaskManager.dll"]  
+EXPOSE 80
+
+
+COPY --from=publish /app/publish .
+
+
+ENTRYPOINT ["dotnet", "TaskManager.dll"]
