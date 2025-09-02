@@ -27,13 +27,10 @@ WORKDIR /app
 # Copia los archivos de la aplicación publicada desde la etapa de compilación
 COPY --from=build /app/publish .
 
-# Exponer el puerto por el que la aplicación escuchará
-# Koyeb asignará dinámicamente el puerto, pero es buena práctica declararlo.
-EXPOSE 8080
 
 # La configuración clave para Koyeb: usar el puerto dinámico de la variable de entorno
 # Esto permite que la aplicación escuche en el puerto que Koyeb le asigna
-ENV ASPNETCORE_URLS=http://+:$PORT
+ENV ASPNETCORE_URLS=http://+:8000
 
 # Define el punto de entrada de la aplicación
 ENTRYPOINT ["dotnet", "TaskManager.dll"]
