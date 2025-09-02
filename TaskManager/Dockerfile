@@ -1,6 +1,6 @@
 # Primera etapa: Compilación
 # Utiliza la imagen del SDK para compilar la aplicación
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
 # Establece el directorio de trabajo dentro del contenedor
 WORKDIR /src
@@ -19,7 +19,7 @@ RUN dotnet publish -c Release -o /app/publish
 
 # Segunda etapa: Tiempo de ejecución
 # Utiliza la imagen ligera de ASP.NET para ejecutar la aplicación
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
 
 # Establece el directorio de trabajo para la aplicación final
 WORKDIR /app
