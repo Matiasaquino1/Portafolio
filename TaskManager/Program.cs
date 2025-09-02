@@ -2,17 +2,16 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using TaskManager.Data;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Agregar servicios al contenedor.
+
 builder.Services.AddDbContext<TaskContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-
-var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 
 builder.Services.AddCors(options =>

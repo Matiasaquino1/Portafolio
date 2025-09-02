@@ -1,24 +1,18 @@
-# ===== Build =====
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copiar el código y restaurar dependencias
-COPY . .
-RUN dotnet restore
+# Copiar el .csproj primero para aprovechar la cache
+COPY TaskManager.csproj ./
+RUN dotnet restore TaskManager.csproj
 
-# Publicar en modo Release
-RUN dotnet publish -c Release -o /app/publish /p:UseAppHost=false
+# Copiar el resto del código
+COPY . ./
+RUN dotnet publish TaskManager.csproj -c Release -o /app /p:UseAppHost=false
 
-# ===== Runtime =====
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
-
-# Koyeb define un PORT dinámico
-ENV ASPNETCORE_HTTP_PORTS=${PORT}
+COPY --from=build /app .
 EXPOSE 8080
-
-# Copiar archivos publicados desde build
-COPY --from=build /app/publish .
-
-# Iniciar la app
+ENV ASPNETCORE_URLS=http://+:8000
 ENTRYPOINT ["dotnet", "TaskManager.dll"]
+
