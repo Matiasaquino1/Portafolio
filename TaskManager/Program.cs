@@ -6,26 +6,14 @@ using System;
 using TaskManager.Data;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 
+// Obtener connection string desde variable de entorno o appsettings.json
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<TaskContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowFrontend",
-        policy =>
-        {
-            policy.WithOrigins("http://localhost:3000", "http://192.168.1.73:3000") 
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
-        });
-});
-
-
+    options.UseNpgsql(connectionString));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -33,20 +21,25 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configurar el pipeline de la aplicación.
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.Urls.Add("http://*:5000");
-app.MapGet("/health", () => "ok");
-app.UseCors("AllowFrontend");
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
-app.Run();
 
+// Endpoint de prueba de conexión
+app.MapGet("/db-check", async (TaskContext db) =>
+{
+    try
+    {
+        var canConnect = await db.Database.CanConnectAsync();
+        return Results.Ok(new { success = canConnect });
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(ex.Message);
+    }
+});
+
+app.Run();
 

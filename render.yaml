@@ -8,4 +8,5 @@ services:
     startCommand: dotnet out/TaskManager.dll --urls=http://0.0.0.0:5000
     envVars:
       - key: ConnectionStrings__DefaultConnection
-        value: "Host=ep-soft-hill-123456.us-east-2.aws.neon.tech;Database=neondb;Username=usuario;Password=clave;Ssl Mode=Require;Trust Server Certificate=true"
+        value: "Host=ep-sweet-art-acyfpmxn-pooler.sa-east-1.aws.neon.tech;Database=neondb;Username=neondb_owner;Password=npg_fqkvQ3IHpP4t;Ssl Mode=Require;Trust Server Certificate=true"
+

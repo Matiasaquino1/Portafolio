@@ -5,21 +5,14 @@
     "version": "1.0"
   },
   "paths": {
-    "/health": {
+    "/db-check": {
       "get": {
         "tags": [
           "TaskManager"
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
