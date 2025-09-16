@@ -3,16 +3,16 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /app
 
 # Copiar csproj y restaurar paquetes
-COPY taskmanagerapi/*.csproj ./taskmanagerapi/
-RUN dotnet restore ./taskmanagerapi/TaskManager.csproj
+COPY TaskManager/*.csproj ./TaskManager/
+RUN dotnet restore ./TaskManager/TaskManager.csproj
 
 # Copiar el resto del proyecto y publicar
-COPY taskmanagerapi/. ./taskmanagerapi/
-RUN dotnet publish ./taskmanagerapi/TaskManager.csproj -c Release -o out
+COPY TaskManager/. ./TaskManager/
+RUN dotnet publish ./TaskManager/TaskManager.csproj -c Release -o out
 
 # Stage 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
-COPY --from=build /app/taskmanagerapi/out .
+COPY --from=build /app/TaskManager/out .
 ENTRYPOINT ["dotnet", "TaskManager.dll"]
 
