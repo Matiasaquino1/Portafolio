@@ -9,8 +9,8 @@ using TaskManager.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Obtener connection string desde variable de entorno o appsettings.json
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = Environment.GetEnvironmentVariable("DefaultConnection")
+                      ?? builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<TaskContext>(options =>
     options.UseNpgsql(connectionString));
@@ -27,7 +27,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
-// Endpoint de prueba de conexión
 app.MapGet("/db-check", async (TaskContext db) =>
 {
     try
