@@ -5,6 +5,25 @@
     "version": "1.0"
   },
   "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "TaskManager"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Tasks": {
       "get": {
         "tags": [

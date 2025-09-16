@@ -41,6 +41,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.Urls.Add("http://*:5000");
 app.MapGet("/health", () => "ok");
 app.UseCors("AllowFrontend");
 app.UseHttpsRedirection();

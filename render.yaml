@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: taskmanager-api
+    env: dotnet
+    plan: free
+    region: oregon
+    buildCommand: dotnet publish ./taskmanagerapi -c Release -o out
+    startCommand: dotnet out/TaskManager.dll --urls=http://0.0.0.0:5000
+    envVars:
+      - key: ConnectionStrings__DefaultConnection
+        value: "Host=ep-soft-hill-123456.us-east-2.aws.neon.tech;Database=neondb;Username=usuario;Password=clave;Ssl Mode=Require;Trust Server Certificate=true"
