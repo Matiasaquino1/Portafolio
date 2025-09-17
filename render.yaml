@@ -7,6 +7,6 @@ services:
     buildCommand: dotnet publish ./taskmanagerapi -c Release -o out
     startCommand: dotnet out/TaskManager.dll --urls=http://0.0.0.0:5000
     envVars:
-      - key: ConnectionStrings__DefaultConnection
+      - key: DefaultConnection
         value: "Host=ep-sweet-art-acyfpmxn-pooler.sa-east-1.aws.neon.tech;Database=neondb;Username=neondb_owner;Password=npg_fqkvQ3IHpP4t;Ssl Mode=Require;Trust Server Certificate=true"
 

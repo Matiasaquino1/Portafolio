@@ -42,5 +42,8 @@ app.MapGet("/db-check", async (TaskContext db) =>
     }
 });
 
+app.MapGet("/health", () => Results.Ok("OK from Render!"));
+
+
 app.Run();
 
