@@ -21,25 +21,31 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("https://matiasaquino1.github.io/Portafolio")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+                      });
+});
+
 var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseHttpsRedirection();
+app.UseCors(MyAllowSpecificOrigins);
 app.UseAuthorization();
 app.MapControllers();
 
 app.MapGet("/db-check", async (TaskContext db) =>
 {
-    try
-    {
-        var canConnect = await db.Database.CanConnectAsync();
-        return Results.Ok(new { success = canConnect });
-    }
-    catch (Exception ex)
-    {
-        return Results.Problem(ex.Message);
-    }
+    var canConnect = await db.Database.CanConnectAsync();
+    return Results.Ok(new { success = canConnect });
 });
 
 app.MapGet("/health", () => Results.Ok("OK from Render!"));
