@@ -12,7 +12,7 @@ function App() {
 
   const fetchTasks = async () => {
     try {
-      const res = await api.get('/');
+      const res = await api.get('');
       setTasks(res.data);
     } catch (error) {
       console.error('Error al obtener tareas', error);
