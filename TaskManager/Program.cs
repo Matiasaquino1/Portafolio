@@ -21,14 +21,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowGithubPages",
         policy =>
         {
-            policy.WithOrigins("https://matiasaquino1.github.io/Portafolio/") 
+            policy.WithOrigins("https://matiasaquino1.github.io") 
                   .AllowAnyHeader()
                   .AllowAnyMethod();
         });
