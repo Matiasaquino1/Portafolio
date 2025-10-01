@@ -1,6 +1,6 @@
 Portafolio - TaskManager
 Bienvenido a mi proyecto TaskManager, una aplicación web desarrollada con React para la gestión eficiente de tareas, que se conecta a una API RESTful desarrollada en .NET ASP.NET Core. 
-Este proyecto forma parte de mi portafolio y demuestra mi desarrollo en frontend, backend, integración de servicios y despliegue en la nube.
+Este proyecto forma parte de mi portafolio.
 
 Descripción del proyecto
 TaskManager es una interfaz de usuario intuitiva y responsiva que permite a los usuarios crear, editar, eliminar y organizar tareas de manera sencilla. 
@@ -14,24 +14,25 @@ React Scripts
 JavaScript (ES6+)
 CSS3
 GitHub Pages (despliegue frontend)
+
 Backend:
 
 ASP.NET Core Web API (.NET 7)
 Entity Framework Core (para acceso a datos)
-Despliegue en Koyeb (plataforma serverless/cloud)
+Despliegue en Render (plataforma serverless/cloud)
 Características principales
 Gestión completa de tareas: creación, edición, eliminación y listado.
 Comunicación frontend-backend mediante API RESTful.
 Interfaz limpia, responsiva y fácil de usar.
 Despliegue público del frontend en GitHub Pages.
-API backend desplegada en Koyeb con alta disponibilidad.
+API backend desplegada en Render con alta disponibilidad.
 
 URLs de acceso
 Frontend (UI React):
 https://Matiasaquino1.github.io/Portafolio
 
 API RESTful (ASP.NET Core):
-https://yelping-jasmina-aquinoteam-dd8c8eb0.koyeb.app/api/tasks
+https://taskmanager-hzrt.onrender.com
 
 Cómo ejecutar el proyecto localmente
 
@@ -49,7 +50,7 @@ npm start
 *Backend*
 Si deseas ejecutar la API localmente, asegúrate de tener instalado .NET 7 SDK y sigue estos pasos:
 
-Clona el repositorio de la API (si está separado) o accede a la carpeta del backend.
+Accede a la carpeta del backend.
 
 Restaura las dependencias y compila:
 
@@ -60,7 +61,7 @@ Ejecuta la API:
 
 dotnet run
 
-La API estará disponible en https://localhost:5001/api/tasks (o el puerto configurado).
+La API estará disponible en https://localhost:5001/api/tasks.
 
 Despliegue:
 El frontend está desplegado en GitHub Pages y se actualiza con:
