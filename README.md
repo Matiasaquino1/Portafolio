@@ -38,7 +38,7 @@ Cómo ejecutar el proyecto localmente
 
 *Frontend*
 Clona el repositorio:
-git clone https://github.com/Matiasaquino1/Portafolio.git
+git clone https://github.com/Matiasaquino1/TaskManager
 
 Instala las dependencias:
 npm install
