@@ -29,7 +29,7 @@ API backend desplegada en Render con alta disponibilidad.
 
 URLs de acceso
 Frontend (UI React):
-https://Matiasaquino1.github.io/Portafolio
+https://matiasaquino1.github.io/TaskManager/
 
 API RESTful (ASP.NET Core):
 https://taskmanager-hzrt.onrender.com
